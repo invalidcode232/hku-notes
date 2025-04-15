@@ -1,1 +1,307 @@
-/Users/jamessungarda/Documents/school/ENGG1300/notes/lec2/lec2.tex
+\documentclass{scrartcl}
+
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{unicode-math}
+\usepackage{siunitx}
+
+\title{Lecture 1-3: Force, moments, and equillibriums}
+\author{James Sungarda}
+\date{5 February 2025}
+
+\graphicspath{{images/}}
+
+
+\begin{document}
+\maketitle
+
+\section{Force}
+
+Important note: In this course, all the force is assumed to be applied to a \emph{rigid body},
+which is a body that does not deform under the force.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.35\textwidth]{force_angles.png}
+    \caption{Force}
+    % \label{fig:force_angles}
+\end{figure}
+
+Resolving a force via trigonometry:
+
+\begin{math}
+    \begin{aligned}
+        F_x &= F \cos(\theta) \\
+        F_y &= F \sin(\theta)
+    \end{aligned}
+\end{math}
+
+\begin{math}
+    \begin{aligned}
+        \text{Angle of the force, } \theta\text{, can be calculated with:  }\\
+        \tan(\theta) &= \frac{F_y}{F_x} \\
+        \theta &= \arctan(\frac{F_y}{F_x})
+    \end{aligned}
+\end{math}
+
+Force can be represented with \emph{cartesian vectors}, which uses the unit vectors \emph{\(\hat{i}\) and \(\hat{j}\)}.
+
+\subsection{Unit vector}
+A unit vector has a unit length of 1, and is usually denoted as $\hat{A}$.
+
+It is defined by:
+\begin{math}
+    \begin{aligned}
+        \hat{A} = \frac{A}{|A|}
+    \end{aligned}
+\end{math}
+
+Where \(|A|\) is the magnitude of the vector \(A\), 
+and defined as: \(|A| = \sqrt{{A_x}^2 + {A_y}^2}\)
+
+Note that the unit vector, is also a vector in itself, as such is defined in \(x\), \(y\), and \(z\) directions.
+For example, \(\hat{A}_x\) is the unit vector in the \(x\) direction, and is defined as \(\hat{A}_x = \frac{A_x}{|A|}\).
+
+\subsection{Coordinate angles}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.35\textwidth]{coordinate_angles.png}
+    \caption{Coordinate direction angles}
+    \label{fig:coordinate_direction_angles}
+\end{figure}
+
+The direction of \(\vec{A}\) is defined by the coordinate direction angles,
+\(\alpha\), \(\beta\), and \(\gamma\),
+which are measured between the tail of \(\vec{A}\) and the \(x\), \(y\), \(z\) axes.
+
+% \subsubsection{Sample problems}
+% Express the force in the figure below in terms of cartesian vectors, and find the coordinate direction angles
+
+% \begin{figure}[h]
+%     \centering
+%     \includegraphics[width=0.3\textwidth]{force_angle_problem.png}
+% \end{figure}
+
+% Resolve \(F\) into its components, \(F_z\) and \(F\prime\):
+
+% \begin{math}
+%     \begin{aligned}
+%         F_z &= F \sin(60) = 100 \sin(60) \approx 86.6 \\
+%         F\prime &= F \cos(60) = 100 \cos(60) = 50 \\
+%         \text{Break down } F\prime \text{ into its components:} \\
+%         F_x &= F\prime \cos(45) = 50 \cos(45) = 35.4 \\
+%         F_y &= F\prime \sin(45) = 50 \sin(45) = 35.4
+%     \end{aligned}
+% \end{math}
+
+% Express \(F\) in terms of cartesian vectors:
+
+% \begin{math}
+%     \begin{aligned}
+%         F &= F_x \hat{i} + F_y \hat{j} + F_z \hat{k} \\
+%         F &= 35.4 \hat{i} + 35.4 \hat{j} + 100 \hat{k}
+%     \end{aligned}
+% \end{math}
+
+% Finding the coordinate angles of \(F\):
+
+% \begin{math}
+%     \begin{aligned}
+%         \alpha &= \arccos(\frac{F_x}{F}) \\
+%         &= \arccos(\frac{35.4}{100})
+%     \end{aligned}
+% \end{math}
+
+% ...do the same for \(\beta\) and \(\gamma\).
+
+\subsection{Position vectors}
+...What's the difference between unit vectors and position vectors?
+
+\begin{itemize}
+    \item A unit vector is vector used to specify only direction, direction does not have a magnitude therefore its length is always \textbf{one}.
+    \item A position vector, meanwhile, is used to tell \emph{how far and in which direction}
+    a point is with respect to some arbitrarily chosen origin.
+\end{itemize}
+
+Position vectors are denoted by \(\vec{F}\), and are defined as:
+
+\begin{math}
+    \begin{aligned}
+        \vec{F} &= |F| \times \hat{F} \\
+        &= |F| \times \hat{r} \\
+        &= |F| \times \frac{\vec{r}}{|r|}
+    \end{aligned}
+\end{math}
+
+\subsubsection{Sample problem}
+
+Determine the magnitude and coordinate direction angles of \(\mathbf{F_3}\) so that the resultant of the three forces acts
+along the positive \(y\) axis and has a magnitude of \(600\unit{\kilo\newton}\).
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{pos_vec_problem2.png}
+\end{figure}
+
+We know that the resultant vector should be \(0\hat{i} + 600\hat{j} + 0\hat{k}\).
+
+First, notice that \(\vec{F_1}\) acts along the \(x\) axis, and hence \(\vec{F_1} = -180\hat{i} + 0\hat{j} + 0\hat{k}\).
+
+Secondly, decompose \(\vec{F_2}\) into its components:
+
+\begin{math}
+    \begin{aligned}
+        F_{2x} &= F_1 \cos(30) \sin(40) = 300 \cos(30) \sin(40) \approx 167 \\
+        F_{2y} &= F_1 \cos(30) \cos(40) = 300 \cos(30) \cos(40) \approx 199 \\
+        F_{2z} &= F_1 \sin(30) = 300 \cos(30) = 150 \\
+        \vec{F_2} &= 167\hat{i} + 199\hat{j} + 150\hat{k}
+    \end{aligned}
+\end{math}
+
+Through algebra, we can find that \(\vec{F_3}\) is equal to \(13\hat{i} + 401\hat{j} + 150\hat{k}\).
+
+Finding its coordinate direction angles can be done by:
+
+\begin{math}
+    \begin{aligned}
+        \alpha &= \arccos(\frac{13}{\sqrt{13^2 + 401^2 + 150^2}}) \\
+        &= \arccos(\frac{13}{428.33}) \\
+        &\approx 88\si{\degree} \\
+    \end{aligned}
+\end{math}
+
+The same can be done for \(\beta\) and \(\gamma\).
+
+\section{Moment}
+
+Moment is defined as the tendency of a force to rotate an object 
+about an axis or point.
+
+It is defined as 
+\begin{math}
+    \begin{aligned}
+        M &= F \times d
+    \end{aligned}
+\end{math}
+
+where \(d\) is the \emph{perpendicular distance} from the 
+line of action of the force to the axis of rotation.
+
+In engineering, we assume that the moments are about the \emph{same moment axis}, hence is equal to the algebraic sum of its magnitudes.
+
+To find moment about a point, \textbf{decompose} the force into its components (\(x\), \(y\), and \(z\) axes), 
+and find the moment of each component about the point.
+The moment will be the \textbf{sum of the moments of each component}.
+
+\subsubsection{Sample problem}
+
+A 100\unit{\kilo\newton} force acts on a structure as shown below. Find the moment of the force about point \(O\).
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{moment_problem.png}
+\end{figure}
+
+\begin{math}
+    \begin{aligned}
+        h &= 0.8 \sin(45) \\
+        d &= 1 + 0.8 \cos(45) \\
+        F_x &= 100 \cos(45) \\ 
+        F_y &= 100 \sin(45) \\
+        \therefore{} M &= F_x \times h + F_y \times d
+    \end{aligned}
+\end{math}
+
+\subsection{Moment formulation by cross products}
+The moment of a force about point O, can be formulated as a \textbf{cross product} of two vectors:
+
+We know that:
+
+\begin{math}
+    \begin{aligned}
+        |M_O| &= |F|d \text{, and } d = |r| \sin(\theta) \\
+        \therefore |M_O| &= |F||r| \sin(\theta) \iff \vec{M_O} = \vec{r} \times \vec{F}
+    \end{aligned}
+\end{math}
+
+\(\vec{r}\) is a position vector drawn from O to \emph{any} point lying on the \emph{line of action} of 
+\(\vec{F}\).
+
+Note that we can choose any \(r\) we want, 
+as the perpendicular distance towards point O (\(d\)) is constant and 
+is always the same regardless of any point we choose.
+
+
+\subsection{Moment of a couple}
+A couple is defined as two forces of equal magnitude, 
+opposite direction, and parallel lines of action.
+
+Its magnitude is defined by \(M = Fd\), where \(d\) is the \emph{distance between the couple}.
+
+Note that \(d\) does not have any relation to the axis of rotation, nor to the point of application.
+Instead, it is a \emph{free vector}, and is the same about \emph{any point}.
+
+\subsection{Equivalent systems}
+
+As long as two sets of loadings produce the same effect of translating and rotating a body, 
+they are considered \textbf{equivalent}.
+
+A system of several forces and moments can be reduced to an \emph{equivalent} resultant force and couple.
+
+In other words, the force might be applied in a different location and the couple might be applied in a different location, 
+however the effect of the equivalent system we reduced it to will be the same as the original.
+
+Force can be moved to a point provided a couple moment is added to the body.
+
+The couple moment is a \emph{free vector} and can be applied at any point, 
+hence it can be directly added when calculating the resultant moment at any point.
+
+\begin{math}
+    \begin{aligned}
+        \mathbf{F_R} &= \Sigma \mathbf{F} \\
+        \mathbf{M_R} &= \Sigma \mathbf{M} + \Sigma \mathbf{M_o} 
+        \text{, where } \mathbf{M_o} \text{ is the couple moment, defined as } \mathbf{M_O} = \mathbf{r} \times \mathbf{F} \text{.}
+    \end{aligned}
+\end{math}
+
+\section{Equilibrium}
+
+This course covers only \textbf{static equilibrium} which is when a body is at rest.
+
+A body is in equilibrium if the \emph{sum of the forces} acting on it and the \emph{sum of the moments} is \textbf{zero}.
+
+\begin{math}
+    \begin{aligned}
+        \Sigma \mathbf{F} &= 0 \iff \Sigma \mathbf{F_{x, y, z} = 0} \\
+        \Sigma \mathbf{M} &= 0 \iff \Sigma \mathbf{M_{x, y, z} = 0}
+    \end{aligned}
+\end{math}
+
+\subsection{Free body diagram}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{free_body_diagram.png}
+    \caption{Free body diagram}
+    \label{fig:free_body_diagram}
+\end{figure}
+
+A free body diagram is a diagram that shows all the forces and moments acting on a body.
+
+The sketch consists of the outlined shape of the body \emph{free} from its surroundings, 
+with \emph{all the forces and moments} acting on it.
+
+\subsubsection{Support reactions}
+A \textbf{support reaction} is a force that is exerted by a support on a body to keep it in equilibrium.
+
+\begin{itemize}
+    \item A support prevents translation by exerting \emph{force} in the opposite direction.
+    \item A support prevents rotation by exerting \emph{moment} in the opposite direction.
+\end{itemize}
+
+\begin{itemize}
+    \item A support reaction is a \textbf{reaction force} that is \emph{equal} and \emph{opposite} to the force applied by the body.
+\end{itemize}
+
+\end{document}

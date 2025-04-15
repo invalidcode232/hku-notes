@@ -1,1 +1,217 @@
-/Users/jamessungarda/Documents/school/MATH1851/Notes/ode.tex
+\documentclass{scrartcl}
+
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{unicode-math}
+\usepackage{siunitx}
+
+\title{MATH1851 Part 2: Ordinary Differential Equations}
+\author{James Sungarda}
+\date{9 April 2025}
+
+\graphicspath{{images/}}
+
+
+\begin{document}
+\maketitle
+
+\section{Integrating Factor}
+Given an equation of the form:
+\[
+\frac{dy}{dx} + p(x)y = q(x)
+\] 
+The integrating factor is given by:
+\[
+I = e^{\int p(x) \, dx}
+\]
+Multiplying the entire equation by \(I\) gives \(I\frac{dy}{dx} + Ip(x)y = Iq(x)\), which can be used to solve the ODE:
+
+\begin{gather}
+    \frac{d}{dx}(Iy) = Iq(x) \\
+    Iy = \int Iq(x) \, dx + C  \\
+    y = \frac{1}{I}\left(\int Iq(x) \, dx + C\right)
+\end{gather}
+
+\section{Homogeneous Linear ODE}
+Given an equation of the form \(\frac{dy}{dx} + p(x)y = 0\)
+
+Let \(w = \frac{y}{x}\), and substitute \(y = wx \implies \frac{dy}{dx} = x\frac{dw}{dx} + w\) into the equation, the equation can then be turned into a solvable separable linear ODE.
+
+\section{Bernoulli's equation}
+A Bernoulli equation is of the form:
+\[
+\frac{dy}{dx} + p(x)y = q(x)y^n
+\]
+where \(n \neq 0, 1\).
+Use the substitution:
+\[
+u = y^{1-n} \iff y = u^{\frac{1}{1-n}}
+\]
+The equation will then become a solvable ODE via integrating factor.
+
+\section{Exact ODE}
+An equation of the form:
+\[
+M(x,y)dx + N(x,y)dy = 0
+\]
+is exact if:
+\[
+\frac{\partial M}{\partial y} = \frac{\partial N}{\partial x}
+\]
+If the equation is exact, then:
+
+\begin{gather}
+\frac{\partial F}{\partial x} = M \quad \text{and} \quad \frac{\partial F}{\partial y} = N \\
+F = \int M \, dx + g(y) \\
+F = \int N \, dy + h(x)
+\end{gather}
+
+where \(F(x,y)\) is the solution to the ODE. To find \(g(y)\) after finding \(h(x)\):
+
+\begin{center}
+    \begin{gather}
+            \frac{\partial F}{\partial y} = \frac{\partial}{\partial y}\left(\int M \, dx + g(y)\right) \\
+            \therefore{} \frac{\partial F}{\partial y} = N
+    \end{gather}
+\end{center}
+
+\section{Cauchy-Euler equations}
+A Cauchy-Euler equation is of the form:
+\[
+x^2\frac{d^2y}{dx^2} + a x \frac{dy}{dx} + b y = 0
+\]
+where \(a\) and \(b\) are constants and there are no other constants. 
+
+Let \(y = x^\lambda\), then solve it as a quadratic equation of sorts.
+
+General solution if:
+
+\[
+\lambda_1 \neq \lambda_2 \implies y = C_1 x^{\lambda_1} + C_2 x^{\lambda_2}
+\]
+\[
+\lambda_1 = \lambda_2 \implies y = C_1 x^{\lambda_1} + C_2 x^{\lambda_1} \ln(x)
+\]
+If \(\lambda_1\) and \(\lambda_2\) are complex, then the general solution is:
+\[
+y = x^{\alpha} \left( C_1 \cos(\beta \ln(x)) + C_2 \sin(\beta \ln(x)) \right)
+\]
+where \(\lambda_{1,2} = \alpha \pm i\beta\).
+
+\section{Second order linear equations}
+A second order linear equation is of the form:
+\[
+a\frac{d^2y}{dx^2} + b\frac{dy}{dx} + cy = 0
+\]
+where \(a\), \(b\), and \(c\) are constants.
+Substitute \(y = e^{\lambda x}\), and solve it as a normal quadratic equation, since \(e^{\lambda x} \neq 0\).
+
+The general solution if:
+
+\[
+\lambda_1 \neq \lambda_2 \implies y = C_1 e^{\lambda_1 x} + C_2 e^{\lambda_2 x}
+\]
+\[
+\lambda_1 = \lambda_2 \implies y = C_1 e^{\lambda_1 x} + C_2 x e^{\lambda_1 x}
+\]
+
+If \(\lambda_1\) and \(\lambda_2\) are complex, then the general solution is:
+\[
+y = e^{\alpha x} \left( C_1 \cos(\beta x) + C_2 \sin(\beta x) \right)
+\]
+where \(\lambda_{1,2} = \alpha \pm i\beta\).
+
+\subsection{Non-homogeneous second order linear equations via undetermined coefficients}
+Guesses list (table):
+\begin{center}
+    \begin{tabular}{|c|c|}
+        \hline
+        Form of \(g(x)\) & Guess \\
+        \hline
+        \(e^{ax}\) & \(Ae^{ax}\) \\
+        \hline
+        \(\sin(bx)\) & \(A\sin(bx) + B\cos(bx)\) \\
+        \hline
+        \(\cos(bx)\) & \(A\sin(bx) + B\cos(bx)\) \\
+        \hline
+        \(x^n\) & \(Ax^n + Bx^{n-1} + Cx^{n-2} + ...\) \\
+        \hline
+    \end{tabular}
+\end{center}
+If the guess is a solution to the homogeneous equation, then multiply the guess by \(x^k\) where \(k\) is the smallest integer such that \(x^k\) times the guess is not a solution to the homogeneous equation.
+
+\subsection{D-Operator}
+D-operator is defined as \(D = \frac{d}{dx}\), where \(x\) is the variable.
+
+If RHS is \(f(x)\), then the D-operator to use is:
+\[
+A_0x^n + A_1x^{n-1} + ... + A_n \implies L = D^{n+1}
+\]
+\[
+A_0x^ne^{ax} + A_1x^{n-1}e^{ax} + ... + A_n e^{ax} \implies L = (D-a)^{n+1}
+\]
+\[
+A_0x^ne^{ax}\sin(bx) + A_0x^{n}e^{ax}\cos(bx) + ... + A_n e^{ax} \cos(bx) \implies L = ((D-a)^2 + b^2)^{n+1}
+\]
+
+\section{Riccati's equation}
+A Riccati equation is of the form:
+\[
+\frac{dy}{dx} = p(x)y^2 + q(x)y + r(x)
+\]
+where \(p(x)\), \(q(x)\), and \(r(x)\) are functions of \(x\).
+
+Do an educated guess to find a solution \(u(x)\), and substitute it to:
+\[
+    Y(x) = u + \frac{1}{v}
+\]
+where \(v(x)\) is a function of \(x\). The equation will then become a linear ODE.
+
+A shortcut to use is:
+\[
+\frac{dv}{dx} + (2p(x)u(x) + q(x))v = -p(x)
+\]
+
+\section{When to use each method}
+Given a differential equation consisting of the function \(f(x) = y\), and one variable \(x\):
+
+If \(f(x)\) is a \textit{first order} differential equation:
+\begin{itemize}
+    \item Use \textbf{Integrating Factor} if the equation is linear (highest order of \(y\) is 1).
+    \item Use \textbf{Homogeneous Linear ODE} if the equation is homogeneous.
+    \item Use \textbf{Bernoulli's equation} if the equation is of the form \(\frac{dy}{dx} + p(x)y = q(x)y^n\).
+    \item Use \textbf{Riccati's equation} if the equation is of the form \(\frac{dy}{dx} = p(x) + q(x)y + r(x)y^2\).
+    \item Use \textbf{Exact ODE} if the equation is exact.
+\end{itemize}
+
+If \(f(x)\) is a \textit{higher order} differential equation:
+\begin{itemize}
+    \item Use \textbf{Cauchy-Euler equations} if the equation \textbf{contains another variable \(x\)} and is of the form \(x^2\frac{d^2y}{dx^2} + a x \frac{dy}{dx} + b y = 0\).
+    \item Use \textbf{Second order linear equations} if the equation is of the form \(a\frac{d^2y}{dx^2} + b\frac{dy}{dx} + cy = 0\), where \(a\), \(b\), and \(c\) are constants.
+\end{itemize}
+
+
+\section{Variation of Parameters}
+Given two known solutions \(y_1\) and \(y_2\), the general solutions can be found with:
+Here is the proof
+
+
+\section{Extras}
+\subsection{Riccati shortcut proof}
+Given a differential equation \(\frac{dy}{dx} = p(x)y^2 + q(x)y + r(x)\), and \(u(x)\) is a known solution:
+Create a substitution \(Y(x) = u(x) + \frac{1}{v(x)}\):
+\begin{gather}
+    Y(x) = u + \frac{1}{v} \implies \frac{dY}{dx} = \frac{du}{dx} - \frac{1}{v^2}\frac{dv}{dx} \\
+    \frac{du}{dx} - \frac{1}{v^2}\frac{dv}{dx} = p\left(u^2+\frac{2u}{v} + \frac{1}{v^2}\right) + q\left(u + \frac{1}{v}\right) + r \\
+    \frac{du}{dx}v^2 - \frac{dv}{dx} = (pu^2 + qu + r)v^2 + (2pu + q)v + p \\
+    \frac{dv}{dx} + (2pu+q)v = (\frac{du}{dx} - (pu^2 + qu + r))v^2 - p \\
+    \therefore{} \frac{dv}{dx} + (2pu + q)v = -p
+\end{gather}
+
+Applying these principles to our problem:
+Let $F(s) = \frac{1}{s^2+b^2}$, so $f(t) = \frac{1}{b}\sin(bt)$
+Then, using the time-shift property with $a = 2$:
+
+% $\mathcal{L}^{-1}\left{\frac{e^{-2s}}{s^2+b^2}\right} = \frac{1}{b}\sin(b(t-2))u(t-2)$
+
+\end{document}
